@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WePayFormsSample.Views.WePaySignInPage">
+     <StackLayout>
+           <WebView x:Name="Browser"
+            HeightRequest="1000" 
+            WidthRequest="1000"
+            Source="{Binding AuthorizationUrl}"
+            Navigated="WebOnEndNavigating"
+            IsVisible="false"/>
+
+          <ActivityIndicator x:Name="LoadingIndicator"
+                             IsRunning="true"
+                             IsVisible="true"
+                             HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand"/>
+      </StackLayout>
+</ContentPage>

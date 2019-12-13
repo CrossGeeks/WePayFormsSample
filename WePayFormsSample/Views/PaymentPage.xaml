@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WePayFormsSample.Views.PaymentPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid VerticalOptions="CenterAndExpand"
+                         Padding="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                 <Label Text="Fill credit card info"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="20"
+                        HorizontalOptions="CenterAndExpand"
+                        FontSize="20"
+                        TextColor="CadetBlue"/>
+
+                <Entry Placeholder="Credit Card Name"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                       Text="{Binding WePayCreditCard.UserName}"
+                       HorizontalOptions="FillAndExpand"/>
+
+                 <Entry Placeholder="Credit Card Number"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Text="{Binding WePayCreditCard.CcNumber}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                <Entry Placeholder="dd/yy"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Text="{Binding WePayCreditCard.ExpirationDate}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                 <Entry Placeholder="Cvv"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Text="{Binding WePayCreditCard.Cvv}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                <Entry Placeholder="Email"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Text="{Binding WePayCreditCard.Email}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                  <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                    HorizontalOptions="CenterAndExpand"
+                                     Grid.Row="5"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2" />
+
+                 <Button Command="{Binding ProcessPaymentCommand}"
+                         Grid.Row="6"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Text="{Binding Amount, StringFormat='Pay ${0}USD'}"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

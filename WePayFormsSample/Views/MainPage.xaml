@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WePayFormsSample.Helpers.Converters"
+             x:Class="WePayFormsSample.Views.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverseBoolConverter x:Key="InverseBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     Padding="20">
+
+             <Label Text="WePay Payment sample"
+                    Margin="20"
+                    HorizontalOptions="CenterAndExpand"
+                    FontSize="20"
+                    TextColor="CadetBlue"/>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               HorizontalOptions="CenterAndExpand"/>
+            <StackLayout IsVisible="{Binding IsPaymentConnected}"
+                         Spacing="20">
+                 <Label Text="{Binding WePayAccount.Name, StringFormat='Account Name: {0}'}"
+                        TextColor="CadetBlue"
+                        HorizontalOptions="CenterAndExpand"/>
+                 <Label Text="{Binding WePayAccount.AccountId, StringFormat='Account Id: {0}'}"
+                        TextColor="CadetBlue"
+                         HorizontalOptions="CenterAndExpand"/>
+
+                <Button Text="Pay"
+                        BorderColor="CadetBlue"
+                        BorderWidth="1"
+                        BackgroundColor="White"
+                        TextColor="CadetBlue"
+                        HorizontalOptions="FillAndExpand"
+                        Command="{Binding GoToPaymentViewCommand}"/>
+
+                <Button Text="Disconnect Account"
+                        Command="{Binding DisconnectCommand}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand"
+                         IsVisible="{Binding IsPaymentConnected, Converter={StaticResource InverseBoolConverter}}">
+                <Button Text="Sign in"
+                        HorizontalOptions="FillAndExpand"
+                        Command="{Binding SignInCommand}"/>
+
+                <Button Text="Sign up"
+                        HorizontalOptions="FillAndExpand"
+                        Command="{Binding SignupCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
